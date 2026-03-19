@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-serif: 'Lora', Georgia, serif;
+
+  --color-brand-50: oklch(0.97 0.03 30);
+  --color-brand-100: oklch(0.93 0.06 30);
+  --color-brand-200: oklch(0.87 0.11 30);
+  --color-brand-300: oklch(0.78 0.16 30);
+  --color-brand-400: oklch(0.70 0.19 30);
+  --color-brand-500: oklch(0.60 0.21 30);
+  --color-brand-600: oklch(0.52 0.21 30);
+  --color-brand-700: oklch(0.42 0.18 30);
+  --color-brand-800: oklch(0.33 0.14 30);
+  --color-brand-900: oklch(0.24 0.09 30);
+
+  --color-rust: oklch(0.65 0.19 30);
+  --color-python: oklch(0.65 0.15 250);
+}
+
+/* Subject color palette — 17 subjects */
+:root {
+  --subject-1:  oklch(0.60 0.20 30);   /* Getting Started — orange */
+  --subject-2:  oklch(0.58 0.20 0);    /* Ownership — red */
+  --subject-3:  oklch(0.60 0.20 280);  /* Type System — violet */
+  --subject-4:  oklch(0.58 0.20 340);  /* Error Handling — rose */
+  --subject-5:  oklch(0.60 0.20 140);  /* Collections — green */
+  --subject-6:  oklch(0.58 0.20 200);  /* Memory — cyan */
+  --subject-7:  oklch(0.55 0.22 250);  /* Concurrency — blue */
+  --subject-8:  oklch(0.60 0.20 60);   /* I/O — amber */
+  --subject-9:  oklch(0.58 0.20 170);  /* Numerical — teal */
+  --subject-10: oklch(0.60 0.20 100);  /* DataFrames — lime */
+  --subject-11: oklch(0.55 0.22 310);  /* Visualization — purple */
+  --subject-12: oklch(0.55 0.22 20);   /* ML Foundations — red-orange */
+  --subject-13: oklch(0.55 0.22 270);  /* Deep Learning — indigo */
+  --subject-14: oklch(0.58 0.22 230);  /* LLM — sky */
+  --subject-15: oklch(0.60 0.20 50);   /* PyO3 — orange-yellow */
+  --subject-16: oklch(0.58 0.20 120);  /* Python Packages — green */
+  --subject-17: oklch(0.55 0.22 350);  /* Integration — pink */
+
+  --sidebar-width: 280px;
+  --toc-width: 240px;
+  --navbar-height: 56px;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+body {
+  font-family: var(--font-sans);
+  @apply bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Prose content inside section pages */
+.prose-rust {
+  @apply max-w-none text-[17px] leading-relaxed text-zinc-800 dark:text-zinc-200;
+
+  h2 { @apply text-2xl font-semibold mt-10 mb-4 text-zinc-900 dark:text-zinc-50; }
+  h3 { @apply text-xl font-semibold mt-8 mb-3 text-zinc-800 dark:text-zinc-100; }
+  h4 { @apply text-lg font-medium mt-6 mb-2 text-zinc-700 dark:text-zinc-200; }
+  p  { @apply mb-4; }
+  a  { @apply text-brand-600 dark:text-brand-400 underline decoration-brand-300 hover:decoration-brand-600; }
+  ul { @apply list-disc list-inside mb-4 space-y-1; }
+  ol { @apply list-decimal list-inside mb-4 space-y-1; }
+  li { @apply text-zinc-700 dark:text-zinc-300; }
+  blockquote { @apply border-l-4 border-brand-400 pl-4 italic text-zinc-600 dark:text-zinc-400 my-4; }
+  hr { @apply border-zinc-200 dark:border-zinc-700 my-8; }
+  strong { @apply font-semibold text-zinc-900 dark:text-zinc-50; }
+  code { @apply font-mono text-sm bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-orange-600 dark:text-orange-400; }
+  pre  { @apply font-mono text-sm bg-zinc-900 text-zinc-100 rounded-xl p-4 my-4 overflow-x-auto; }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { @apply bg-transparent; }
+::-webkit-scrollbar-thumb { @apply bg-zinc-300 dark:bg-zinc-600 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-zinc-400 dark:bg-zinc-500; }
+
+/* Smooth transitions for interactive elements */
+.viz-panel {
+  @apply rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 overflow-hidden;
+}
+
+/* Print styles */
+@media print {
+  .sidebar, .navbar, .toc { display: none !important; }
+  .prose-rust { max-width: 100% !important; }
+}
